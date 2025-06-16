@@ -1,0 +1,6 @@
+[submodule "google_transpiler"]
+	path = google_transpiler
+	url = git@github.com:rickwebiii/fully-homomorphic-encryption.git
+[submodule "juliet"]
+	path = juliet
+	url = git@github.com:Sunscreen-tech/Juliet.git
