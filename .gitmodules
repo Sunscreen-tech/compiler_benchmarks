@@ -4,3 +4,6 @@
 [submodule "juliet"]
 	path = juliet
 	url = git@github.com:Sunscreen-tech/Juliet.git
+[submodule "juliet_compiler"]
+	path = juliet_compiler
+	url = https://github.com/TrustworthyComputing/HEJava-compiler.git
