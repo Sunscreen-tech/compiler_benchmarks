@@ -7,3 +7,12 @@
 [submodule "juliet_compiler"]
 	path = juliet_compiler
 	url = https://github.com/TrustworthyComputing/HEJava-compiler.git
+[submodule "concrete"]
+	path = concrete
+	url = git@github.com:Sunscreen-tech/concrete-chisq.git
+[submodule "parasol"]
+	path = parasol
+	url = git@github.com:Sunscreen-tech/spf.git
+[submodule "SoK"]
+	path = SoK
+	url = git@github.com:rickwebiii/SoK.git
