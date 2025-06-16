@@ -2,10 +2,20 @@
 Benchmarks for various FHE compilers and instruction for running them.
 
 # Prereqs
+## Submodules
 First, update all submodules to pull down all the other benchmarks:
 ```bash
 git submodule update --init --recursive
 ```
+
+## Docker
+Many of the benchmarks need Docker, which you'll need to either get from your package
+manager.
+
+## AVX-512F
+Some benchmarks require an x86_64 processor with AVX-512F. If you see "Illegal Instruction" when running one of these benchmarks, you aren't running on such a processor.
+
+You can readily lease such a machine in AWS, notably c7a.* and hpc7a.* EC2 instance types.
 
 # Running benchmarks
 We provide benchmarks for the following TFHE-based frameworks:
@@ -18,7 +28,7 @@ We provide benchmarks for the following TFHE-based frameworks:
 
 ## Parasol
 ### Prereqs
-Install the [Rust](https://rustup.rs/) by following he linked directions.
+Install the [Rust](https://rustup.rs/) by following the linked directions.
 
 ### Basic op runtimes
 To get the runtimes of basic operations running under circuit bootstrapping:
@@ -29,10 +39,53 @@ cargo bench --bench ops
 ```
 
 ### Benchmarks
+To run the benchmarks we cite in our paper:
+
 ```bash
 cd parasol/parasol_cpu
 cargo bench
 ```
 
 ## Concrete
-See [RUNNING.md](./concrete/RUNNING.md).
+See [RUNNING.md](https://github.com/Sunscreen-tech/concrete-chisq/blob/main/RUNNING.md).
+
+To change the auction size, edit `concrete/auction.py` and change `num_bids`.
+
+To change the Hamming distance code word size, edit `concrete/hamming.py` and change the `num_bytes`.
+
+## Juliet
+See [RUNNING.md](https://github.com/Sunscreen-tech/Juliet/blob/main/RUNNING.md).
+
+Note our benchmarks are in `juliet_benchmarks/src`.
+Furthermore, the mentioned `HEJava-compiler` is already cloned as a submodule in `juliet_compiler`.
+
+## Google transpiler
+See [Running.md](https://github.com/rickwebiii/fully-homomorphic-encryption/blob/main/RUNNING.md).
+
+To change the size of the auction, edit `google_transpiler/transpiler/examples/auction/auction_circuit.h` and change the `NUM_BIDS` define.
+
+To change the Hamming distance code word size, edit `google_transpiler/transpiler/examples/hamming_distance/hamming_distance_circuit.h` and change the `SIZE` define.
+
+## E3
+```bash
+cd SoK/E3
+docker build -t e3 .
+docker run -it --entrypoint bash e3
+./docker-entrypoint.sh
+```
+
+In the hamming distance benchmark, you can change the `SIZE` define in `SoK/E3/source/hamming-tfhe/main.cpp` to change the size of the codewords.
+
+In the auction benchmark, you can change the `COUNT` define in `SoK/E3/source/auciton-tfhe/main.cpp` to change the number of bids.
+
+## Cingulata
+```bash
+cd SoK/Cingulata
+docker build -t cingulata .
+docker run -it --entrypoint bash cingulata
+./docker-entrypoint.sh
+```
+
+In the hamming distance benchmark, you can change the `SIZE` define in `SoK/Cingulata/source/hamming-cingulata-tfhe/hamming-tfhe.cxx` to change the size of the codewords.
+
+In the auction benchmark, you can change the `COUNT` define in `SoK/Cingulata/source/auction-cingulata-tfhe/auction-tfhe.cxx` to change the number of bids.
