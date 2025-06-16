@@ -35,3 +35,4 @@ cargo bench
 ```
 
 ## Concrete
+See [RUNNING.md](./concrete/RUNNING.md).
