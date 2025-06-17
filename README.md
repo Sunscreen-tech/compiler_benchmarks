@@ -1,5 +1,5 @@
 # FHE Compiler Benchmarks
-Benchmarks for various FHE compilers and instruction for running them.
+Benchmarks for various FHE compilers and instruction for running them. This guide supposes you're using AWS Linux, but these instructions can be modified for other distributions as well.
 
 # Prereqs
 ## Submodules
@@ -11,6 +11,13 @@ git submodule update --init --recursive
 ## Docker
 Many of the benchmarks need Docker, which you'll need to either get from your package
 manager.
+
+## System deps
+You'll need a C++ compiler and OpenSSL (don't ask).
+
+```
+sudo yum install -y clang openssl-devel python pip
+```
 
 ## AVX-512F
 Some benchmarks require an x86_64 processor with AVX-512F. If you see "Illegal Instruction" when running one of these benchmarks, you aren't running on such a processor.
