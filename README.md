@@ -3,6 +3,12 @@ In this repo, we provide benchmarking code for various FHE compilers and instruc
 
 These benchmarks are used as part of [our paper]() on the [Parasol compiler](). We ran the benchmarks on an AWS c7a.16xlarge machine.
 
+Our benchmarks consist of the following 4 programs:
+- Chi-squared test (an FHE-friendly variant). This program gives you a sense of how the FHE compilers perform on arithmetic-heavy programs. The original program is courtesy of [this SoK paper](https://arxiv.org/abs/2101.07078) on FHE compilers.
+- Cardio program. This program contains a mix of operations including logical, comparison, and arithmetic operations. The original program is courtesy of [this SoK paper](https://arxiv.org/abs/2101.07078). 
+- First-price sealed-bid auction program (can vary the number of bids). This program features comparisons over encrypted values and looping over plaintext values. It features a significant amount of parallelism for Parasol to exploit (assuming the machine has sufficient cores).
+- Hamming distance (can choose byte size).  
+
 # Prereqs
 ## Submodules
 First, update all submodules to pull down all the other benchmarks:
