@@ -1,5 +1,7 @@
-# FHE Compiler Benchmarks
-Benchmarks for various FHE compilers and instruction for running them. This guide supposes you're using AWS Linux, but these instructions can be modified for other distributions as well.
+# FHE compiler benchmarks
+In this repo, we provide benchmarking code for various FHE compilers and instructions for running these benchmarks. Our guide supposes you're using AWS Linux, but these instructions can be modified for other distributions as well.
+
+These benchmarks are used as part of [our paper]() on the [Parasol compiler](). We ran the benchmarks on an AWS c7a.16xlarge machine.
 
 # Prereqs
 ## Submodules
