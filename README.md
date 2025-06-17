@@ -109,7 +109,7 @@ In `juliet/client/ppscript.sh` change `WORDSIZE` to 16.
 In `juliet/cloud_end/juliet_interpreter.py`, update the second to last line:
 
 ```python
-juliet_ee("Benchmarks/Auction.asm", 8, 64)
+juliet_ee("Benchmarks/Auction.asm", 16, 64)
 ```
 
 In `juliet/cloud_enc/tapes/pub.txt`, write the number of bids.
