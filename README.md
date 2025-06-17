@@ -16,7 +16,7 @@ manager.
 You'll need a C++ compiler and OpenSSL (don't ask).
 
 ```
-sudo yum install -y clang openssl-devel python pip
+sudo yum install -y clang openssl-devel python pip cmake
 ```
 
 ## AVX-512F
@@ -65,6 +65,54 @@ See [RUNNING.md](https://github.com/Sunscreen-tech/Juliet/blob/main/RUNNING.md).
 
 Note our benchmarks are in `juliet_benchmarks/src`.
 Furthermore, the mentioned `HEJava-compiler` is already cloned as a submodule in `juliet_compiler`.
+
+We have already compiled, emplaced, and patched the asm files under `juliet/cloud_enc/Benchmarks` so you don't have to.
+
+You'll need to run `keygen` one time.
+
+### Chisq notes
+In `juliet/client/preAux.txt`, put 3 values, 1 per line.
+In `juliet/client/ppscript.sh` change `WORDSIZE` to 16.
+
+In `juliet/cloud_end/juliet_interpreter.py`, update the second to last line:
+
+```python
+juliet_ee("Benchmarks/ChiSq.asm", 16, 64)
+```
+
+### Cardio notes
+In `juliet/client/preAux.txt`, put 10 values, 1 per line.
+In `juliet/client/ppscript.sh` change `WORDSIZE` to 8.
+
+In `juliet/cloud_end/juliet_interpreter.py`, update the second to last line:
+
+```python
+juliet_ee("Benchmarks/Cardio.asm", 8, 64)
+```
+
+### Hamming notes
+In `juliet/client/preAux.txt`, put 8 values, 1 per line.
+In `juliet/client/ppscript.sh` change `WORDSIZE` to 8.
+
+In `juliet/cloud_end/juliet_interpreter.py`, update the second to last line:
+
+```python
+juliet_ee("Benchmarks/Hamming.asm", 8, 64)
+```
+
+In `juliet/cloud_enc/tapes/pub.txt`, write the codeword size (in bytes) you want to evaluate.
+
+### Auction
+In `juliet/client/preAux.txt`, put 32 values, 1 per line.
+In `juliet/client/ppscript.sh` change `WORDSIZE` to 16.
+
+In `juliet/cloud_end/juliet_interpreter.py`, update the second to last line:
+
+```python
+juliet_ee("Benchmarks/Auction.asm", 8, 64)
+```
+
+In `juliet/cloud_enc/tapes/pub.txt`, write the number of bids.
 
 ## Google transpiler
 See [Running.md](https://github.com/rickwebiii/fully-homomorphic-encryption/blob/main/RUNNING.md).
