@@ -61,7 +61,7 @@ To change the auction size, edit `concrete/auction.py` and change `num_bids`.
 To change the Hamming distance code word size, edit `concrete/hamming.py` and change the `num_bytes`.
 
 ## Juliet
-See [RUNNING.md](https://github.com/Sunscreen-tech/Juliet/blob/main/RUNNING.md).
+See [RUNNING.md](https://github.com/Sunscreen-tech/Juliet/blob/sunscreen_bench/RUNNING.md).
 
 Note our benchmarks are in `juliet_benchmarks/src`.
 Furthermore, the mentioned `HEJava-compiler` is already cloned as a submodule in `juliet_compiler`.
