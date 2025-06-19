@@ -6,8 +6,8 @@ These benchmarks are used as part of [our paper](https://eprint.iacr.org/2025/11
 We ran the benchmarks on an AWS c7a.16xlarge instance, as sufficient cores are needed to take advantage of parallelism. If you'd like to view the results we obtained (as of June 2025), feel free to see the evaluation section of our paper or jump to the [performance section in our compiler docs](https://docs.sunscreen.tech/perf.html).
 
 Our benchmarks consist of the following 4 programs:
-- **Chi-squared test** (an FHE-friendly variant). This program gives you a sense of how the FHE compilers perform on arithmetic-heavy programs. The original program is courtesy of [this SoK paper](https://arxiv.org/abs/2101.07078) on FHE compilers.
-- **Cardio program**. This program contains a mix of operations including logical, comparison, and arithmetic operations. The original program is courtesy of [this SoK paper](https://arxiv.org/abs/2101.07078). 
+- **Chi-squared test** (an FHE-friendly variant). This program gives you a sense of how the FHE compilers perform on arithmetic-heavy programs. 
+- **Cardio program**. This program contains a mix of operations including logical, comparison, and arithmetic operations. The original program is courtesy of [this SoK paper](https://arxiv.org/abs/2101.07078), as is the variant of chi-squared described above. 
 - **First-price sealed-bid auction** (can vary the number of bids). This program features comparisons over encrypted values and looping over plaintext values. Importantly, it features a significant amount of parallelism for Parasol to exploit, assuming the machine has sufficient cores.
 - **Hamming distance** (can choose byte size). This program has less parallelism for Parasol to exploit today (e.g. no parallel tree reduction). 
 
