@@ -3,13 +3,13 @@ In this repo, we provide benchmarking code for various FHE compilers and instruc
 
 These benchmarks are used as part of [our paper](https://eprint.iacr.org/2025/1144.pdf) on the Parasol compiler. To use Parasol, you can get started [here](https://docs.sunscreen.tech/install.html). 
 
-We ran the benchmarks on an AWS c7a.16xlarge instance, as sufficient cores are needed to take advantage of parallelism in our approach. If you'd like to view the results we obtained (as of June 2025), feel free to see the evaluation section of our paper or [look here]().
-
 Our benchmarks consist of the following 4 programs:
 - **Chi-squared test** (an FHE-friendly variant). This program gives you a sense of how the FHE compilers perform on arithmetic-heavy programs. 
 - **Cardio program**. This program contains a mix of operations including logical, comparison, and arithmetic operations. The original program is courtesy of [this SoK paper](https://arxiv.org/abs/2101.07078), as is the variant of chi-squared described above. 
 - **First-price sealed-bid auction** (can vary the number of bids). This program features comparisons over encrypted values and looping over plaintext values. Importantly, it features a significant amount of parallelism for Parasol to exploit, assuming the machine has sufficient cores.
 - **Hamming distance** (can choose byte size). This program has less parallelism for Parasol to exploit today (e.g. no parallel tree reduction). 
+
+We ran the benchmarks on an AWS c7a.16xlarge instance, as sufficient cores are needed to take advantage of parallelism in our approach. 
 
 Feel free to jump to the relevant section:
 - [Setup](#setup)
@@ -165,7 +165,7 @@ In the auction benchmark, you can change the `COUNT` define in `SoK/Cingulata/so
 ## Our results
 Full details can be found in [our paper](https://eprint.iacr.org/2025/1144.pdf).
 
-Juliet seems to experience some issues at 8-bit precision. For Concrete, which asks for sample inputs from the developer, we pass in inputs of the same bit size to maintain the precision used by other frameworks (except for cardio program as the output is a small integer anyway).
+Juliet seems to experience some issues at 8-bit precision. For Concrete, which asks for sample inputs from the developer, we pass in inputs of the same bit size needed to maintain the precision used by other frameworks (except for cardio program as the output is a small integer anyway).
 
 ### Chi-squared program
 We look at how our compiler performs for a FHE-friendly variant of chi-squared with respect to runtime of the generated FHE program, size of the compiler output, and memory usage.
@@ -190,9 +190,7 @@ We also consider how our compiler performs for the cardio program with respect t
 | Google Transpiler  | 3.26s     | 11.4kB       | 274MB        |
 | E<sup>3</sup>-TFHE | 119s      | 1.87MB       | **181MB**    |
 | Cingulata-TFHE     | 2.98s     | 613kB        | 254MB        |
-| Juliet             | N/A<sup>*</sup>       | N/A    | N/A    |
-
-<sup>*</sup> Juliet outputs different and unexpected answers acros multiple runs of this benchmark. We suspect this is due to some issue with running 8-bit computation on Juliet. 
+| Juliet             | N/A       | N/A    | N/A    |
 
 ### First-price sealed-bid auction
 We also consider how our compiler performs with respect to runtime of the generated FHE program as we vary the number of bids.
@@ -215,6 +213,6 @@ We also consider how our compiler performs with respect to runtime of the genera
 | Google Transpiler  | 4.12s         | 9.60s            | 19.7s             |    40.2s      |
 | E<sup>3</sup>-TFHE | 33.8s         | 68.4s            | 135s             |     268s      |
 | Cingulata-TFHE     | 1.48s         | 4.19s            | 9.59s             |    20.2s      |
-| Juliet     | N/A<sup>*</sup>         |   8.89s          | 18.2s            |    36.1s      |
+| Juliet     | N/A         |   8.89s          | 18.2s            |    36.1s      |
 
 <sup>*</sup> Juliet segfaults on an 8-bit wordsize.
