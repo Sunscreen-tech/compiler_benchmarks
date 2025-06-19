@@ -214,5 +214,3 @@ We also consider how our compiler performs with respect to runtime of the genera
 | E<sup>3</sup>-TFHE | 33.8s         | 68.4s            | 135s             |     268s      |
 | Cingulata-TFHE     | 1.48s         | 4.19s            | 9.59s             |    20.2s      |
 | Juliet     | N/A         |   8.89s          | 18.2s            |    36.1s      |
-
-<sup>*</sup> Juliet segfaults on an 8-bit wordsize.
