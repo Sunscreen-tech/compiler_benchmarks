@@ -1,7 +1,7 @@
 # FHE compiler benchmarks
 In this repo, we provide benchmarking code for various FHE compilers and instructions for running these benchmarks. Our guide supposes you're using AWS Linux, but these instructions can be modified for other distributions as well.
 
-These benchmarks are used as part of [our paper]() on the Parasol compiler. To use Parasol, you can get started [here](https://docs.sunscreen.tech/install.html). 
+These benchmarks are used as part of [our paper](https://eprint.iacr.org/2025/1144.pdf) on the Parasol compiler. To use Parasol, you can get started [here](https://docs.sunscreen.tech/install.html). 
 
 We ran the benchmarks on an AWS c7a.16xlarge instance, as sufficient cores are needed to take advantage of parallelism. If you'd like to view the results we obtained (as of June 2025), feel free to see the evaluation section of our paper or jump to the [performance section in our compiler docs](https://docs.sunscreen.tech/perf.html).
 
