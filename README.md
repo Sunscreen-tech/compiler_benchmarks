@@ -13,7 +13,7 @@ Our benchmarks consist of the following 4 programs:
 
 Feel free to jump to the relevant section:
 - [Setup](#setup)
-- [Running the benchmarks](#running-benchmarks)
+- [Running the benchmarks](#running-the-benchmarks)
 - [Results](#results)
 
 ## Setup
