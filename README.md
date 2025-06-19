@@ -163,12 +163,58 @@ In the hamming distance benchmark, you can change the `SIZE` define in `SoK/Cing
 In the auction benchmark, you can change the `COUNT` define in `SoK/Cingulata/source/auction-cingulata-tfhe/auction-tfhe.cxx` to change the number of bids.
 
 ## Our results
+Full details can be found in [our paper](https://eprint.iacr.org/2025/1144.pdf).
+
+Juliet seems to experience some issues at 8-bit precision. For Concrete, which asks for sample inputs from the developer, we pass in inputs of the same bit size to maintain the precision used by other frameworks (except for cardio program as the output is a small integer anyway).
 
 ### Chi-squared program
+We look at how our compiler performs for a FHE-friendly variant of chi-squared with respect to runtime of the generated FHE program, size of the compiler output, and memory usage.
+
+| Compiler           | Runtime   | Program size | Memory usage |
+| ------------------ | --------- | ------------ | ------------ |
+| Parasol            | **576ms** | **232B**     | 365MB        |
+| Concrete           | 5.29s     | 1.41kB       | 1.82GB       |
+| Google Transpiler  | 13.8s     | 323kB        | 299MB        |
+| E<sup>3</sup>-TFHE | 440s      | 2.87MB       | **182MB**    |
+| Cingulata-TFHE     | 85.6s     | 579kB        | 254MB        |
+| Juliet             |  114s      |  512B       |  254MB       |
 
 
 ### Cardio program
+We also consider how our compiler performs for the cardio program with respect to runtime of the generated FHE programs, size of the compiler output, and memory usage.
 
-### Auction
+| Compiler           | Runtime   | Program size | Memory usage |
+| ------------------ | --------- | ------------ | ------------ |
+| Parasol            | **438ms** | **472B**     | 399MB        |
+| Concrete           | 2.13s     | 10.4kB       | 4.0GB        |
+| Google Transpiler  | 3.26s     | 11.4kB       | 274MB        |
+| E<sup>3</sup>-TFHE | 119s      | 1.87MB       | **181MB**    |
+| Cingulata-TFHE     | 2.98s     | 613kB        | 254MB        |
+| Juliet             | N/A<sup>*</sup>       | N/A    | N/A    |
 
-### Hamming distance
+<sup>*</sup> Juliet outputs different and unexpected answers acros multiple runs of this benchmark. We suspect this is due to some issue with running 8-bit computation on Juliet. 
+
+### First-price sealed-bid auction
+We also consider how our compiler performs with respect to runtime of the generated FHE program as we vary the number of bids.
+
+|                    |     2 bids    |       4 bids     |        8 bids     |     16 bids   |     32 bids     |
+| ------------------ | ------------- | ---------------- | ----------------- | ------------- | --------------- |
+| Parasol            |   **0.098s**  |     **0.275s**   | **0.625s**        |   **1.315s**  |   **2.714s**    |
+| Concrete           | 24.1s         | 86.4s            | 264s              |    694s       |   1690s         |
+| Google Transpiler  | 2.36s         | 6.72s            | 15.4s             |    33.1s      |    68.2s        |
+| E<sup>3</sup>-TFHE | 12.4s         | 36.6s            | 84.8s             |     182s      |    379s         |
+| Cingulata-TFHE     | 1.48s         | 4.33s            | 10.3s             |    22.4s      |     47.2s       |
+| Juliet             | 5.54s         |   16.6s          | 38.7s           |    82.7s       |  171s            |
+
+### Hamming distance between 2 N-byte words
+
+|                    |    1 byte    |       2 bytes    |        4 bytes     |     8 bytes   |
+| ------------------ | ------------- | ---------------- | ----------------- | ------------- | 
+| Parasol            |   **0.339s**  |     **0.681s**   | **1.36s**        |   **2.7s**  |
+| Concrete           | 4.89s         | 7.74s            | 12.3s              |    24.7s       |
+| Google Transpiler  | 4.12s         | 9.60s            | 19.7s             |    40.2s      |
+| E<sup>3</sup>-TFHE | 33.8s         | 68.4s            | 135s             |     268s      |
+| Cingulata-TFHE     | 1.48s         | 4.19s            | 9.59s             |    20.2s      |
+| Juliet     | N/A<sup>*</sup>         |   8.89s          | 18.2s            |    36.1s      |
+
+<sup>*</sup> Juliet segfaults on an 8-bit wordsize.
