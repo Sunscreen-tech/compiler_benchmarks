@@ -3,7 +3,7 @@ In this repo, we provide benchmarking code for various FHE compilers and instruc
 
 These benchmarks are used as part of [our paper](https://eprint.iacr.org/2025/1144.pdf) on the Parasol compiler. To use Parasol, you can get started [here](https://docs.sunscreen.tech/install.html). 
 
-We ran the benchmarks on an AWS c7a.16xlarge instance, as sufficient cores are needed to take advantage of parallelism in our approach. If you'd like to view the results we obtained (as of June 2025), feel free to see the evaluation section of our paper or jump to the [performance section in our compiler docs](https://docs.sunscreen.tech/perf.html).
+We ran the benchmarks on an AWS c7a.16xlarge instance, as sufficient cores are needed to take advantage of parallelism in our approach. If you'd like to view the results we obtained (as of June 2025), feel free to see the evaluation section of our paper or [look here]().
 
 Our benchmarks consist of the following 4 programs:
 - **Chi-squared test** (an FHE-friendly variant). This program gives you a sense of how the FHE compilers perform on arithmetic-heavy programs. 
