@@ -30,7 +30,7 @@ sudo yum install -y clang openssl-devel python pip cmake
 ```
 
 ## AVX-512F
-Some benchmarks require an x86_64 processor with AVX-512F. If you see "Illegal Instruction" when running one of these benchmarks, you aren't running on such a processor.
+Some benchmarks (specifically Cingulata and E3) require an x86_64 processor with AVX-512F. If you see "Illegal Instruction" when running one of these benchmarks, you aren't running on such a processor.
 
 You can readily lease such a machine in AWS, notably c7a.* and hpc7a.* EC2 instance types.
 
@@ -42,6 +42,8 @@ We provide benchmarks for the following TFHE-based frameworks:
 * Juliet
 * Concrete
 * Google transpiler
+
+Using [Lattice Estimator](https://github.com/malb/lattice-estimator), we estimate Parasol and Concrete to provide ~128 bits of security; Google, Cingulata, and Juliet provide ~118 bits; E3 provides ~94 bits.
 
 ## Parasol
 ### Prereqs
