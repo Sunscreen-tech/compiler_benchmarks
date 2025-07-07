@@ -50,6 +50,8 @@ We provide benchmarks for the following TFHE-based frameworks:
 
 Using [Lattice Estimator](https://github.com/malb/lattice-estimator), we estimate Parasol and Concrete to provide ~128 bits of security; Google, Cingulata, and Juliet provide ~118 bits; E3 provides ~94 bits.
 
+If you'd like to find more information about the parameters used in Parasol, feel free to take a look [here](https://github.com/Sunscreen-tech/spf/blob/main/parasol_runtime/src/params.rs) and [here](https://github.com/Sunscreen-tech/spf/blob/main/sunscreen_tfhe/src/params.rs).
+
 ### Parasol
 #### Prereqs
 Install the [Rust](https://rustup.rs/) by following the linked directions.
