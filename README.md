@@ -15,6 +15,8 @@ Feel free to jump to the relevant section:
 - [Setup](#setup)
 - [Running the benchmarks](#running-the-benchmarks)
 - [Results](#our-results)
+  - [Operation benchmarks](#homomorphic-operation-benchmarks)
+  - [Compiler benchmmarks](#fhe-compiler-benchmarks)
 
 ## Setup
 ### Submodules
@@ -165,11 +167,32 @@ In the hamming distance benchmark, you can change the `SIZE` define in `SoK/Cing
 In the auction benchmark, you can change the `COUNT` define in `SoK/Cingulata/source/auction-cingulata-tfhe/auction-tfhe.cxx` to change the number of bids.
 
 ## Our results
-Full details can be found in [our paper](https://eprint.iacr.org/2025/1144.pdf).
+Full details can be found in [our paper](https://eprint.iacr.org/2025/1144.pdf). 
 
+We provide results for how our approach (realizing homomorphic computation via the combination of circuit bootstrapping and multiplexer trees) compares against programmable bootstrapping (via a state-of-the-art library instantiating this approach). We then go on to provide benchmarks for the Parasol compiler against other FHE compilers.
+
+### Homomorphic operation benchmarks
+We consider how our approach fares against tfhe-rs 1.1.3, which takes a programmable bootstrapping-based approach, by considering the performance of various homomorphic operations. 
+
+For more details on our approach utilizing CBS and CMUX, please see our paper. As our compiler provides limited support for 64-bit today, we benchmark up to 32 bits.
+
+| Operation          | PBS (tfhe-rs 1.1.3)   | CBS-CMUX (ours) | 
+| ------------------ | --------------------- | ------------ | 
+| 8-bit greater than     | 34.47ms | **28.88ms**     | 
+| 16-bit greater than     | 51.50ms     | **32.54ms**      | 
+| 32-bit greater than  | 70.07ms     | **47.09ms**        |
+| 8-bit add           | 51.66ms      | **29.65ms**      |
+| 16-bit add           | 51.71ms     | **33.34ms**        |
+| 32-bit add           |  72.72ms      |  **47.89ms**      |
+| 8-bit multiply     |    88.67ms       |   **34.25ms**      |
+| 16-bit multiply     |     137.12ms      |   **54.24ms**            |
+| 32-bit multiply     |    279.35ms          |     **166.08ms**          |
+
+
+### FHE compiler benchmarks
 Juliet seems to experience some issues at 8-bit precision. For Concrete, which asks for sample inputs from the developer, we pass in inputs of the same bit size needed to maintain the precision used by other frameworks (except for cardio program as the output is a small integer anyway).
 
-### Chi-squared program
+#### Chi-squared program
 We look at how our compiler performs for a FHE-friendly variant of chi-squared with respect to runtime of the generated FHE program, size of the compiler output, and memory usage.
 
 | Compiler           | Runtime   | Program size | Memory usage |
@@ -182,7 +205,7 @@ We look at how our compiler performs for a FHE-friendly variant of chi-squared w
 | Juliet             |  114s      |  512B       |  254MB       |
 
 
-### Cardio program
+#### Cardio program
 We also consider how our compiler performs for the cardio program with respect to runtime of the generated FHE programs, size of the compiler output, and memory usage.
 
 | Compiler           | Runtime   | Program size | Memory usage |
@@ -194,7 +217,7 @@ We also consider how our compiler performs for the cardio program with respect t
 | Cingulata-TFHE     | 2.98s     | 613kB        | 254MB        |
 | Juliet             | N/A       | N/A    | N/A    |
 
-### First-price sealed-bid auction
+#### First-price sealed-bid auction
 We also consider how our compiler performs with respect to runtime of the generated FHE program as we vary the number of bids.
 
 |                    |     2 bids    |       4 bids     |        8 bids     |     16 bids   |     32 bids     |
@@ -206,7 +229,7 @@ We also consider how our compiler performs with respect to runtime of the genera
 | Cingulata-TFHE     | 1.48s         | 4.33s            | 10.3s             |    22.4s      |     47.2s       |
 | Juliet             | 5.54s         |   16.6s          | 38.7s           |    82.7s       |  171s            |
 
-### Hamming distance between 2 N-byte words
+#### Hamming distance between 2 N-byte words
 
 |                    |    1 byte    |       2 bytes    |        4 bytes     |     8 bytes   |
 | ------------------ | ------------- | ---------------- | ----------------- | ------------- | 
