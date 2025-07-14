@@ -172,7 +172,7 @@ Full details can be found in [our paper](https://eprint.iacr.org/2025/1144.pdf).
 We provide results for how our approach (realizing homomorphic computation via the combination of circuit bootstrapping and multiplexer trees) compares against programmable bootstrapping (via a state-of-the-art library instantiating this approach). We then go on to provide benchmarks for the Parasol compiler against other FHE compilers.
 
 ### Homomorphic operation benchmarks
-We consider how our approach fares against tfhe-rs 1.1.3, which takes a programmable bootstrapping-based approach, by considering the performance of various homomorphic operations. 
+We consider how our approach fares against tfhe-rs 1.1.3, which takes a programmable bootstrapping-based approach, by considering the performance of various homomorphic operations. As per Lattice Estimator, both libraries are set to provide ~128 bits of security.
 
 For more details on our approach utilizing CBS and CMUX, please see our paper. As our compiler provides limited support for 64-bit today, we benchmark up to 32 bits.
 
