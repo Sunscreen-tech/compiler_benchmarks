@@ -16,7 +16,7 @@ Feel free to jump to the relevant section:
 - [Running the benchmarks](#running-the-benchmarks)
 - [Results](#our-results)
   - [Operation benchmarks](#homomorphic-operation-benchmarks)
-  - [Compiler benchmmarks](#fhe-compiler-benchmarks)
+  - [Compiler benchmarks](#fhe-compiler-benchmarks)
 
 ## Setup
 ### Submodules
